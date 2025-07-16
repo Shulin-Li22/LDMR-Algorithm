@@ -1,0 +1,51 @@
+{
+  "session_id": "20250716_160953",
+  "simulation_params": {
+    "constellation": "globalstar",
+    "num_ground_stations": 10,
+    "total_traffic": 6.0,
+    "duration": 180.0,
+    "scenario": "performance"
+  },
+  "network_stats": {
+    "total_nodes": 58,
+    "satellites": 48,
+    "ground_stations": 10,
+    "total_links": 36,
+    "average_degree": 1.2413793103448276,
+    "is_connected": false
+  },
+  "traffic_stats": {
+    "total_flows": 5952,
+    "elephant_flows": 76,
+    "mouse_flows": 5876,
+    "avg_bandwidth": 6.3998296699567625,
+    "max_bandwidth": 136.93862283960206,
+    "min_bandwidth": 0.22305453397072805,
+    "avg_duration": 0.9182208265550678,
+    "total_traffic": 36.80051438585148,
+    "elephant_ratio": 0.012768817204301076
+  },
+  "ldmr_statistics": {
+    "total_demands": 5952,
+    "successful_demands": 111,
+    "failed_demands": 5841,
+    "success_rate": 0.018649193548387098,
+    "total_paths_calculated": 111,
+    "avg_paths_per_successful_demand": 1.0,
+    "avg_path_length": 3.0,
+    "min_path_length": 3,
+    "max_path_length": 3,
+    "std_path_length": 0.0,
+    "avg_path_delay": 0.025950494880859955,
+    "min_path_delay": 0.025950494880859962,
+    "max_path_delay": 0.025950494880859966,
+    "std_path_delay": 8.706374616327709e-18,
+    "avg_computation_time": 1.0365560170142881e-05,
+    "total_computation_time": 0.06169581413269043,
+    "max_computation_time": 0.0002949237823486328,
+    "total_links_used": 3,
+    "max_link_usage": 2,
+    "avg_link_usage": 2.0,
+    "link_usage_distribution": {
+      
