@@ -12,9 +12,9 @@ try:
     from algorithms.basic_algorithms import DijkstraPathFinder, PathInfo
 except ImportError:
     try:
-        from ..topology.topology_base import NetworkTopology
-        from ..traffic.traffic_model import TrafficDemand
-        from .basic_algorithms import DijkstraPathFinder, PathInfo
+        from ...topology.topology_base import NetworkTopology
+        from ...traffic.traffic_model import TrafficDemand
+        from ..basic_algorithms import DijkstraPathFinder, PathInfo
     except ImportError:
         from topology_base import NetworkTopology
         from traffic_model import TrafficDemand
