@@ -18,6 +18,8 @@ from traffic.traffic_model import TrafficGenerator
 from algorithms.ldmr_algorithms import LDMRAlgorithm, LDMRConfig
 from algorithms.baseline.spf_algorithm import SPFAlgorithm
 from algorithms.baseline.ecmp_algorithm import ECMPAlgorithm
+from output.result_exporter import export_benchmark_comparison
+from output.visualizer import plot_algorithm_comparison
 
 
 class SimpleBenchmark:
@@ -223,6 +225,24 @@ class SimpleBenchmark:
                 print(f"   多路径优势: {ldmr_result['avg_paths_per_demand']:.1f}条链路不相交路径")
                 print(f"   容错性: {ldmr_result['disjoint_rate']:.1%}路径不相交率")
 
+        print("=" * 80)
+
+        # 导出结果
+        try:
+            timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+
+            # 导出CSV数据
+            csv_path = export_benchmark_comparison(results, timestamp)
+
+            # 生成对比图表
+            chart_path = plot_algorithm_comparison(results, timestamp)
+
+            print(f"\n📊 基准测试结果已保存:")
+            print(f"   数据文件: {csv_path}")
+            print(f"   图表文件: {chart_path}")
+
+        except Exception as e:
+            print(f"⚠️  结果导出失败: {e}")
 
 def main():
     """主函数"""

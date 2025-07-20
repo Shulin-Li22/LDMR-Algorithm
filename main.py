@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-LDMR算法简化主程序
+LDMR算法主程序
 4个核心功能：运行LDMR、基准对比、参数分析、切换场景
 """
 
@@ -15,7 +15,8 @@ sys.path.insert(0, str(project_root / 'src'))
 from config import load_config, list_scenarios
 from benchmark import SimpleBenchmark
 from param_analysis import ParameterAnalysis
-
+from output.result_exporter import export_all_results
+from output.visualizer import generate_all_visualizations
 
 # 简单的LDMR运行功能
 def run_ldmr_only():
@@ -78,6 +79,30 @@ def run_ldmr_only():
         print(f"   执行时间: {stats.get('total_computation_time', 0):.2f}s")
 
         print("✅ LDMR算法运行完成!")
+
+        # 导出结果和生成图表
+        print("\n📊 导出结果和生成图表...")
+        try:
+            # 导出结果数据
+            output_files = export_all_results(
+                ldmr_results=results,
+                config=config
+            )
+
+            # 生成可视化图表
+            chart_files = generate_all_visualizations(
+                ldmr_results=results
+            )
+
+            print("✅ 结果导出和可视化完成!")
+            print("📁 查看输出文件:")
+            print(f"   数据文件: {output_files.get('ldmr_csv', 'N/A')}")
+            print(f"   摘要报告: {output_files.get('summary_txt', 'N/A')}")
+            print(f"   路径分析图: {chart_files.get('path_analysis', 'N/A')}")
+            print(f"   性能趋势图: {chart_files.get('performance_trends', 'N/A')}")
+
+        except Exception as e:
+            print(f"⚠️  输出生成失败: {e}")
 
     except Exception as e:
         print(f"❌ LDMR运行失败: {e}")
@@ -204,6 +229,25 @@ def run_ldmr_with_config(config):
         stats = ldmr.get_algorithm_statistics(results)
         print(f"\n📊 结果: 成功率={stats.get('success_rate', 0):.1%}, "
               f"延迟={stats.get('avg_path_delay', 0) * 1000:.2f}ms")
+
+        # 快速导出结果
+        try:
+            timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+
+            # 只导出摘要报告
+            from output.result_exporter import ResultExporter
+            exporter = ResultExporter()
+            summary_path = exporter.generate_summary_report(
+                ldmr_results=results,
+                config=config,
+                timestamp=timestamp
+            )
+
+            print(f"📝 详细报告: {summary_path}")
+
+        except Exception as e:
+            print(f"⚠️  报告生成失败: {e}")
+
 
     except Exception as e:
         print(f"❌ 运行失败: {e}")

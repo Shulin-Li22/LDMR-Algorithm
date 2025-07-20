@@ -16,6 +16,8 @@ from config import load_config
 from topology.satellite_constellation import LEONetworkBuilder
 from traffic.traffic_model import TrafficGenerator
 from algorithms.ldmr_algorithms import LDMRAlgorithm, LDMRConfig
+from output.result_exporter import export_parameter_analysis
+from output.visualizer import plot_parameter_sensitivity
 
 
 class ParameterAnalysis:
@@ -212,6 +214,23 @@ class ParameterAnalysis:
 
         # 显示总结
         self.display_parameter_summary(param_results)
+
+        # 导出结果
+        try:
+            timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+
+            # 导出参数分析数据
+            csv_path = export_parameter_analysis(param_results, timestamp)
+
+            # 生成敏感性图表
+            chart_path = plot_parameter_sensitivity(param_results, timestamp)
+
+            print(f"\n📊 参数分析结果已保存:")
+            print(f"   数据文件: {csv_path}")
+            print(f"   图表文件: {chart_path}")
+
+        except Exception as e:
+            print(f"⚠️  结果导出失败: {e}")
 
         return param_results
 

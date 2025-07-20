@@ -21,3 +21,12 @@ traffic:
   total_gbps: 6.0           # 总流量 (Gbps)
   duration: 180.0           # 仿真时长 (秒)
   elephant_ratio: 0.3       # 大象流比例
+
+# 输出配置
+output:
+  enable_export: true              # 是否启用结果导出
+  export_csv: true                 # 导出CSV数据
+  export_figures: true             # 生成图表
+  output_dir: "results"            # 输出目录
+  figure_format: "png"             # 图片格式 (png/pdf)
+  include_timestamp: true          # 文件名包含时间戳
