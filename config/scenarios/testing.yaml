@@ -1,28 +1,12 @@
-# 测试场景配置
-# 继承default_config.yaml，用于快速测试
-
-simulation:
-  name: "LDMR Testing Scenario"
-  description: "快速测试场景，小规模网络和短时间仿真"
-
-# 网络配置 - 小规模测试
+# 测试场景 - 小规模快速测试
 network:
   constellation: "globalstar"
   ground_stations: 8
-  
-# 流量配置 - 轻负载短时间
+
+algorithm:
+  K: 2
+  r3: 30
+
 traffic:
   total_gbps: 3.0
-  duration: 150.0
-  
-# 算法配置 - 基础参数
-algorithm:
-  config:
-    K: 2
-    r3: 30
-    enable_statistics: true
-    
-# 输出配置 - 简化输出
-output:
-  save_detailed_paths: false
-  log_level: "INFO"
+  duration: 120.0

@@ -1,37 +1,13 @@
-# 性能测试场景配置
-# 用于性能评估和基准测试
-
-simulation:
-  name: "LDMR Performance Scenario"
-  description: "性能测试场景，标准参数和Iridium星座"
-
-# 网络配置 - Iridium星座
+# 性能测试场景 - Iridium星座
 network:
   constellation: "iridium"
-  ground_stations: 10
-  
-# 流量配置 - 标准负载
-traffic:
-  total_gbps: 6.0
-  duration: 150.0
-  elephant_ratio: 0.3
-  
-# 算法配置 - 标准参数
+  ground_stations: 15
+
 algorithm:
-  config:
-    K: 2
-    r1: 1
-    r2: 10
-    r3: 50
-    Ne_th: 2
-    enable_statistics: true
-    
-# 输出配置 - 详细输出
-output:
-  save_detailed_paths: true
-  log_level: "INFO"
-  
-# 性能监控
-monitoring:
-  enable_real_time_stats: true
-  memory_monitoring: true
+  K: 2
+  r3: 50                      # 论文最优值
+
+traffic:
+  total_gbps: 8.0
+  duration: 180.0
+  elephant_ratio: 0.3

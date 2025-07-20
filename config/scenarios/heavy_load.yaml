@@ -1,32 +1,16 @@
-# 重负载场景配置
-# 适用于网络重负载压力测试
-
-simulation:
-  name: "LDMR Heavy Load Scenario"
-  description: "重负载场景，大规模网络和高流量"
-
-# 网络配置 - 大规模
+# 重负载场景 - 测试拥塞处理
 network:
   constellation: "globalstar"
   ground_stations: 12
-  
-# 流量配置 - 重负载
-traffic:
-  total_gbps: 8.0
-  duration: 150.0
-  elephant_ratio: 0.4
-  
-# 算法配置 - 优化参数
+  satellite_bandwidth: 8.0    # 减少带宽制造拥塞
+  ground_bandwidth: 4.0
+
 algorithm:
-  config:
-    K: 2
-    r1: 1
-    r2: 10
-    r3: 50
-    Ne_th: 3
-    max_iterations: 15
-    
-# 输出配置
-output:
-  save_detailed_paths: true
-  log_level: "INFO"
+  K: 2
+  r3: 60                      # 增大权重上界
+  Ne_th: 3                    # 提高阈值
+
+traffic:
+  total_gbps: 10.0            # 高流量
+  duration: 200.0
+  elephant_ratio: 0.4

@@ -1,0 +1,23 @@
+# LDMR算法简化配置文件
+
+# 网络拓扑配置
+network:
+  constellation: "globalstar"  # 星座类型: globalstar, iridium
+  ground_stations: 10          # 地面站数量
+  satellite_bandwidth: 10.0    # 卫星链路带宽 (Gbps)
+  ground_bandwidth: 5.0        # 地面链路带宽 (Gbps)
+
+# LDMR算法配置
+algorithm:
+  K: 2                    # 每个节点对的路径数量
+  r1: 1                   # 权重下界1
+  r2: 10                  # 权重下界2
+  r3: 50                  # 权重上界
+  Ne_th: 2                # 链路利用频次阈值
+  enable_statistics: true # 启用详细统计
+
+# 流量配置
+traffic:
+  total_gbps: 6.0           # 总流量 (Gbps)
+  duration: 180.0           # 仿真时长 (秒)
+  elephant_ratio: 0.3       # 大象流比例

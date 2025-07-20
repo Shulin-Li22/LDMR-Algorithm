@@ -1,30 +1,13 @@
-# 轻负载场景配置
-# 适用于网络轻负载测试
-
-simulation:
-  name: "LDMR Light Load Scenario"
-  description: "轻负载场景，中等规模网络"
-
-# 网络配置
+# 轻负载场景
 network:
   constellation: "globalstar"
   ground_stations: 10
-  
-# 流量配置 - 轻负载
+
+algorithm:
+  K: 2
+  r3: 40
+
 traffic:
   total_gbps: 4.0
   duration: 150.0
   elephant_ratio: 0.2
-  
-# 算法配置
-algorithm:
-  config:
-    K: 2
-    r1: 1
-    r2: 10
-    r3: 30
-    Ne_th: 2
-    
-# 输出配置
-output:
-  save_detailed_paths: false
