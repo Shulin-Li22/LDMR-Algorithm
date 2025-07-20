@@ -2,7 +2,6 @@
 
 [![Python](https://img.shields.io/badge/Python-3.8%2B-blue.svg)](https://www.python.org/)
 [![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
-[![Code Style](https://img.shields.io/badge/Code%20Style-Black-black.svg)](https://github.com/psf/black)
 
 基于论文《A GNN-Enabled Multipath Routing Algorithm for Spatial-Temporal Varying LEO Satellite Networks》的LDMR (Link Disjoint Multipath Routing) 算法完整实现。
 
@@ -290,6 +289,11 @@ results/
 - 减少流量规模以加快测试速度
 - 调整参数 `r3` 和 `Ne_th` 优化性能
 - 使用较小的星座配置进行调试
+
+## 📌 声明
+
+本项目的部分代码由 GenAI 辅助生成（ChatGPT, Gemini, Claude），并由作者进行审查、修改和完善。
+请在使用或参考本项目代码时，自行核实其正确性与适用性，必要时进行适当的测试和调整。
 
 ## 📄 许可证
 
