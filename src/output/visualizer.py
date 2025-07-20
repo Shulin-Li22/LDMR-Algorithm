@@ -100,8 +100,8 @@ class Visualizer:
 
         # 1. 成功率对比
         bars1 = ax1.bar(algorithms, success_rates, color=self.colors[:len(algorithms)])
-        ax1.set_title('算法成功率对比', fontsize=14, fontweight='bold')
-        ax1.set_ylabel('成功率 (%)')
+        ax1.set_title('Comparison of Success Rates', fontsize=14, fontweight='bold')
+        ax1.set_ylabel('Success Rate (%)')
         ax1.set_ylim(0, 105)
 
         # 添加数值标签
@@ -112,8 +112,8 @@ class Visualizer:
 
         # 2. 平均延迟对比
         bars2 = ax2.bar(algorithms, avg_delays, color=self.colors[:len(algorithms)])
-        ax2.set_title('算法平均延迟对比', fontsize=14, fontweight='bold')
-        ax2.set_ylabel('平均延迟 (ms)')
+        ax2.set_title('Comparison of Average Latency', fontsize=14, fontweight='bold')
+        ax2.set_ylabel('Average Latency (ms)')
 
         for bar, delay in zip(bars2, avg_delays):
             height = bar.get_height()
@@ -122,8 +122,8 @@ class Visualizer:
 
         # 3. 平均路径数对比
         bars3 = ax3.bar(algorithms, avg_paths, color=self.colors[:len(algorithms)])
-        ax3.set_title('算法平均路径数对比', fontsize=14, fontweight='bold')
-        ax3.set_ylabel('平均路径数')
+        ax3.set_title('Comparison of Average Number of Paths', fontsize=14, fontweight='bold')
+        ax3.set_ylabel('Average Number of Paths')
 
         for bar, paths in zip(bars3, avg_paths):
             height = bar.get_height()
@@ -132,8 +132,8 @@ class Visualizer:
 
         # 4. 执行时间对比
         bars4 = ax4.bar(algorithms, exec_times, color=self.colors[:len(algorithms)])
-        ax4.set_title('算法执行时间对比', fontsize=14, fontweight='bold')
-        ax4.set_ylabel('执行时间 (s)')
+        ax4.set_title('Comparison of Execution Time', fontsize=14, fontweight='bold')
+        ax4.set_ylabel('Execution Time (s)')
 
         for bar, time in zip(bars4, exec_times):
             height = bar.get_height()
@@ -141,7 +141,7 @@ class Visualizer:
                      f'{time:.2f}', ha='center', va='bottom')
 
         # 调整布局
-        plt.suptitle('LDMR算法与基准算法性能对比', fontsize=16, fontweight='bold', y=0.98)
+        plt.suptitle('Performance Comparison between LDMR and Benchmark Algorithms', fontsize=16, fontweight='bold', y=0.98)
 
         filename = f"algorithm_comparison_{timestamp}"
         filepath = self._save_figure(fig, filename)
@@ -206,10 +206,10 @@ class Visualizer:
                     ax.plot(data['values'], [r * 100 for r in data['success_rates']],
                             'o-', linewidth=2, markersize=8, color=self.colors[plot_idx])
                     ax.axvline(x=data['optimal'], color='red', linestyle='--', alpha=0.7,
-                               label=f'最优值: {data["optimal"]}')
-                    ax.set_title(f'{param_name}参数对成功率的影响', fontweight='bold')
-                    ax.set_xlabel(f'{param_name}值')
-                    ax.set_ylabel('成功率 (%)')
+                               label=f'Optimal: {data["optimal"]}')
+                    ax.set_title(f'Impact of {param_name} Parameter on Success Rate', fontweight='bold')
+                    ax.set_xlabel(f'{param_name} Value')
+                    ax.set_ylabel('Success Rate (%)')
                     ax.grid(True, alpha=0.3)
                     ax.legend()
                     plot_idx += 1
@@ -220,10 +220,10 @@ class Visualizer:
                     ax.plot(data['values'], [d * 1000 for d in data['avg_delays']],
                             's-', linewidth=2, markersize=8, color=self.colors[plot_idx])
                     ax.axvline(x=data['optimal'], color='red', linestyle='--', alpha=0.7,
-                               label=f'最优值: {data["optimal"]}')
-                    ax.set_title(f'{param_name}参数对延迟的影响', fontweight='bold')
-                    ax.set_xlabel(f'{param_name}值')
-                    ax.set_ylabel('平均延迟 (ms)')
+                               label=f'Optimal: {data["optimal"]}')
+                    ax.set_title(f'Impact of {param_name} Parameter on Latency', fontweight='bold')
+                    ax.set_xlabel(f'{param_name} Value')
+                    ax.set_ylabel('Average Latency (ms)')
                     ax.grid(True, alpha=0.3)
                     ax.legend()
                     plot_idx += 1
@@ -232,7 +232,7 @@ class Visualizer:
         for i in range(plot_idx, len(axes)):
             axes[i].set_visible(False)
 
-        plt.suptitle('LDMR算法参数敏感性分析', fontsize=16, fontweight='bold', y=0.98)
+        plt.suptitle('LDMR Algorithm Parameter Sensitivity Analysis', fontsize=16, fontweight='bold', y=0.98)
 
         filename = f"parameter_sensitivity_{timestamp}"
         filepath = self._save_figure(fig, filename)
@@ -263,8 +263,8 @@ class Visualizer:
 
         # 按带宽需求分组分析
         bandwidth_ranges = [(0, 10), (10, 50), (50, 100), (100, float('inf'))]
-        range_labels = ['小流量\n(0-10Mbps)', '中流量\n(10-50Mbps)',
-                        '大流量\n(50-100Mbps)', '超大流量\n(100+Mbps)']
+        range_labels = ['Small Traffic\n(0-10Mbps)', 'Medium Traffic\n(10-50Mbps)',
+                        'Large Traffic\n(50-100Mbps)', 'Ultra Large Traffic\n(100+Mbps)']
 
         range_success_rates = []
         range_avg_delays = []
@@ -296,8 +296,8 @@ class Visualizer:
 
         # 1. 不同流量大小的成功率
         bars1 = ax1.bar(range_labels, range_success_rates, color=self.colors[:4])
-        ax1.set_title('不同流量大小的成功率', fontweight='bold')
-        ax1.set_ylabel('成功率 (%)')
+        ax1.set_title('Success Rate by Traffic Size', fontweight='bold')
+        ax1.set_ylabel('Success Rate (%)')
         ax1.set_ylim(0, 105)
 
         for bar, rate in zip(bars1, range_success_rates):
@@ -308,8 +308,8 @@ class Visualizer:
 
         # 2. 不同流量大小的平均延迟
         bars2 = ax2.bar(range_labels, range_avg_delays, color=self.colors[:4])
-        ax2.set_title('不同流量大小的平均延迟', fontweight='bold')
-        ax2.set_ylabel('平均延迟 (ms)')
+        ax2.set_title('Average Latency by Traffic Size', fontweight='bold')
+        ax2.set_ylabel('Average Latency (ms)')
 
         for bar, delay in zip(bars2, range_avg_delays):
             if delay > 0:
@@ -321,9 +321,9 @@ class Visualizer:
         path_counts = [len(r.paths) for r in ldmr_results if r.success]
         unique_paths, counts = np.unique(path_counts, return_counts=True)
 
-        bars3 = ax3.bar([f'{p}条路径' for p in unique_paths], counts, color=self.colors[:len(unique_paths)])
-        ax3.set_title('计算路径数分布', fontweight='bold')
-        ax3.set_ylabel('流量需求数量')
+        bars3 = ax3.bar([f'{p} Paths' for p in unique_paths], counts, color=self.colors[:len(unique_paths)])
+        ax3.set_title('Distribution of Computed Paths', fontweight='bold')
+        ax3.set_ylabel('Number of Traffic Demands')
 
         for bar, count in zip(bars3, counts):
             height = bar.get_height()
@@ -334,13 +334,13 @@ class Visualizer:
         comp_times = [r.computation_time * 1000 for r in ldmr_results]  # 转换为ms
         ax4.hist(comp_times, bins=20, color=self.colors[0], alpha=0.7, edgecolor='black')
         ax4.axvline(x=np.mean(comp_times), color='red', linestyle='--',
-                    label=f'平均值: {np.mean(comp_times):.2f}ms')
-        ax4.set_title('计算时间分布', fontweight='bold')
-        ax4.set_xlabel('计算时间 (ms)')
-        ax4.set_ylabel('频次')
+                    label=f'Average: {np.mean(comp_times):.2f}ms')
+        ax4.set_title('Computation Time Distribution', fontweight='bold')
+        ax4.set_xlabel('Computation Time (ms)')
+        ax4.set_ylabel('Frequency')
         ax4.legend()
 
-        plt.suptitle('LDMR算法性能趋势分析', fontsize=16, fontweight='bold', y=0.98)
+        plt.suptitle('LDMR Algorithm Performance Trend Analysis', fontsize=16, fontweight='bold', y=0.98)
 
         filename = f"performance_trends_{timestamp}"
         filepath = self._save_figure(fig, filename)
@@ -385,10 +385,10 @@ class Visualizer:
                                                   max(all_path_lengths) + 2), color=self.colors[0],
                      alpha=0.7, edgecolor='black')
             ax1.axvline(x=np.mean(all_path_lengths), color='red', linestyle='--',
-                        label=f'平均长度: {np.mean(all_path_lengths):.1f}跳')
-            ax1.set_title('路径长度分布', fontweight='bold')
-            ax1.set_xlabel('路径长度 (跳数)')
-            ax1.set_ylabel('路径数量')
+                        label=f'Average Length: {np.mean(all_path_lengths):.1f} hops')
+            ax1.set_title('Path Length Distribution', fontweight='bold')
+            ax1.set_xlabel('Path Length (hops)')
+            ax1.set_ylabel('Number of Paths')
             ax1.legend()
 
         # 2. 路径延迟分布
@@ -401,17 +401,17 @@ class Visualizer:
             ax2.hist(all_path_delays, bins=20, color=self.colors[1],
                      alpha=0.7, edgecolor='black')
             ax2.axvline(x=np.mean(all_path_delays), color='red', linestyle='--',
-                        label=f'平均延迟: {np.mean(all_path_delays):.3f}ms')
-            ax2.set_title('路径延迟分布', fontweight='bold')
-            ax2.set_xlabel('路径延迟 (ms)')
-            ax2.set_ylabel('路径数量')
+                        label=f'Average Latency: {np.mean(all_path_delays):.3f}ms')
+            ax2.set_title('Path Latency Distribution', fontweight='bold')
+            ax2.set_xlabel('Path Latency (ms)')
+            ax2.set_ylabel('Number of Paths')
             ax2.legend()
 
         # 3. 路径不相交验证
         disjoint_count = sum(1 for r in successful_results if len(r.paths) >= 2)
         total_multipath = sum(1 for r in successful_results if len(r.paths) >= 2)
 
-        labels = ['路径不相交', '可能重叠']
+        labels = ['Disjoint Paths', 'Possible Overlap']
         sizes = [disjoint_count, total_multipath - disjoint_count] if total_multipath > disjoint_count else [
             disjoint_count, 0]
         colors = [self.colors[2], self.colors[3]]
@@ -419,7 +419,7 @@ class Visualizer:
         if total_multipath > 0:
             wedges, texts, autotexts = ax3.pie(sizes, labels=labels, colors=colors,
                                                autopct='%1.1f%%', startangle=90)
-            ax3.set_title('多路径不相交性验证', fontweight='bold')
+            ax3.set_title('Multipath Disjointness Verification', fontweight='bold')
 
         # 4. 成功率 vs 路径数
         path_nums = range(1, max(len(r.paths) for r in ldmr_results) + 1)
@@ -437,13 +437,13 @@ class Visualizer:
 
         ax4.plot(path_nums, success_rates_by_paths, 'o-', linewidth=2,
                  markersize=8, color=self.colors[4])
-        ax4.set_title('成功率 vs 计算路径数', fontweight='bold')
-        ax4.set_xlabel('计算路径数')
-        ax4.set_ylabel('成功率 (%)')
+        ax4.set_title('Success Rate vs Number of Computed Paths', fontweight='bold')
+        ax4.set_xlabel('Number of Computed Paths')
+        ax4.set_ylabel('Success Rate (%)')
         ax4.grid(True, alpha=0.3)
         ax4.set_ylim(0, 105)
 
-        plt.suptitle('LDMR算法路径分析', fontsize=16, fontweight='bold', y=0.98)
+        plt.suptitle('LDMR Algorithm Path Analysis', fontsize=16, fontweight='bold', y=0.98)
 
         filename = f"path_analysis_{timestamp}"
         filepath = self._save_figure(fig, filename)
@@ -488,26 +488,26 @@ class Visualizer:
 
             # 创建性能指标表格
             metrics_data = [
-                ['总流量需求', f'{total_demands}'],
-                ['成功计算', f'{success_count}'],
-                ['成功率', f'{success_count / total_demands * 100:.1f}%'],
-                ['总路径数', f'{total_paths}'],
-                ['平均路径数', f'{total_paths / success_count if success_count > 0 else 0:.1f}'],
-                ['平均延迟', f'{avg_delay:.3f} ms'],
-                ['平均计算时间', f'{avg_comp_time * 1000:.2f} ms']
+                ['Total Traffic Demands', f'{total_demands}'],
+                ['Successful Computations', f'{success_count}'],
+                ['Success Rate', f'{success_count / total_demands * 100:.1f}%'],
+                ['Total Paths', f'{total_paths}'],
+                ['Average Paths per Demand', f'{total_paths / success_count if success_count > 0 else 0:.1f}'],
+                ['Average Latency', f'{avg_delay:.3f} ms'],
+                ['Average Computation Time', f'{avg_comp_time * 1000:.2f} ms']
             ]
 
             ax1.axis('tight')
             ax1.axis('off')
             table = ax1.table(cellText=metrics_data,
-                              colLabels=['性能指标', '数值'],
+                              colLabels=['Performance Metrics', 'Values'],
                               cellLoc='center',
                               loc='center',
                               colWidths=[0.6, 0.4])
             table.auto_set_font_size(False)
             table.set_fontsize(12)
             table.scale(1, 2)
-            ax1.set_title('LDMR算法性能总览', fontsize=14, fontweight='bold', pad=20)
+            ax1.set_title('LDMR Algorithm Performance Overview', fontsize=14, fontweight='bold', pad=20)
 
         # 2. 算法对比雷达图 (右上角)
         if benchmark_results:
@@ -534,7 +534,7 @@ class Visualizer:
                 angles = np.linspace(0, 2 * np.pi, 4, endpoint=False).tolist()
                 angles += angles[:1]  # 闭合
 
-                labels = ['成功率', '延迟性能', '多路径能力', '计算效率']
+                labels = ['Success Rate', 'Latency Performance', 'Multipath Capability', 'Computational Efficiency']
 
                 for i, (algo, values) in enumerate(zip(algorithms, metrics_values)):
                     values += values[:1]  # 闭合
@@ -545,7 +545,7 @@ class Visualizer:
                 ax2.set_xticks(angles[:-1])
                 ax2.set_xticklabels(labels)
                 ax2.set_ylim(0, 1)
-                ax2.set_title('算法性能雷达图', fontweight='bold', pad=20)
+                ax2.set_title('Algorithm Performance Radar Chart', fontweight='bold', pad=20)
                 ax2.legend(loc='upper right', bbox_to_anchor=(1.2, 1.0))
 
         # 3. 流量分布 (左下角)
@@ -555,10 +555,10 @@ class Visualizer:
             bandwidths = [r.demand.bandwidth for r in ldmr_results]
             ax3.hist(bandwidths, bins=20, color=self.colors[0], alpha=0.7, edgecolor='black')
             ax3.axvline(x=np.mean(bandwidths), color='red', linestyle='--',
-                        label=f'平均带宽: {np.mean(bandwidths):.1f}Mbps')
-            ax3.set_title('流量需求分布', fontweight='bold')
-            ax3.set_xlabel('带宽需求 (Mbps)')
-            ax3.set_ylabel('需求数量')
+                        label=f'Average Bandwidth: {np.mean(bandwidths):.1f}Mbps')
+            ax3.set_title('Traffic Demand Distribution', fontweight='bold')
+            ax3.set_xlabel('Bandwidth Demand (Mbps)')
+            ax3.set_ylabel('Number of Demands')
             ax3.legend()
 
         # 4. 关键统计信息 (底部)
@@ -571,31 +571,31 @@ class Visualizer:
             if successful:
                 max_delay = max(r.min_delay for r in successful)
                 min_delay = min(r.min_delay for r in successful)
-                insights.append(f"延迟范围: {min_delay:.3f}ms - {max_delay:.3f}ms")
+                insights.append(f"Latency Range: {min_delay:.3f}ms - {max_delay:.3f}ms")
 
                 path_counts = [len(r.paths) for r in successful]
                 avg_paths = np.mean(path_counts)
-                insights.append(f"平均路径数: {avg_paths:.1f}条")
+                insights.append(f"Average Paths: {avg_paths:.1f}")
 
                 # 路径不相交率
                 multipath_results = [r for r in successful if len(r.paths) >= 2]
                 if multipath_results:
-                    insights.append(f"多路径需求: {len(multipath_results)}个")
+                    insights.append(f"Multipath Demands: {len(multipath_results)}")
 
                 # 计算效率
                 fast_computations = sum(1 for r in ldmr_results if r.computation_time < 0.001)
-                insights.append(f"快速计算(<1ms): {fast_computations}个")
+                insights.append(f"Fast Computations (<1ms): {fast_computations}")
 
             insight_text = " | ".join(insights)
 
-            ax4.text(0.5, 0.5, f"关键洞察: {insight_text}",
+            ax4.text(0.5, 0.5, f"Key Insights: {insight_text}",
                      ha='center', va='center', fontsize=12,
                      bbox=dict(boxstyle="round,pad=0.3", facecolor="lightblue", alpha=0.5))
             ax4.set_xlim(0, 1)
             ax4.set_ylim(0, 1)
             ax4.axis('off')
 
-        plt.suptitle(f'LDMR网络性能总览 - {datetime.now().strftime("%Y-%m-%d")}',
+        plt.suptitle(f'LDMR Network Performance Overview - {datetime.now().strftime("%Y-%m-%d")}',
                      fontsize=16, fontweight='bold', y=0.95)
 
         filename = f"network_overview_{timestamp}"
@@ -713,21 +713,21 @@ class AdvancedVisualizer(Visualizer):
         if 'rewards' in training_data:
             episodes = list(range(len(training_data['rewards'])))
             ax1.plot(episodes, training_data['rewards'], color=self.colors[0], linewidth=2)
-            ax1.set_title('训练奖励收敛曲线', fontweight='bold')
-            ax1.set_xlabel('训练轮次')
-            ax1.set_ylabel('累积奖励')
+            ax1.set_title('Training Reward Convergence Curve', fontweight='bold')
+            ax1.set_xlabel('Training Episodes')
+            ax1.set_ylabel('Cumulative Reward')
             ax1.grid(True, alpha=0.3)
 
         # 损失函数曲线
         if 'losses' in training_data:
             episodes = list(range(len(training_data['losses'])))
             ax2.plot(episodes, training_data['losses'], color=self.colors[1], linewidth=2)
-            ax2.set_title('训练损失曲线', fontweight='bold')
-            ax2.set_xlabel('训练轮次')
-            ax2.set_ylabel('损失值')
+            ax2.set_title('Training Loss Curve', fontweight='bold')
+            ax2.set_xlabel('Training Episodes')
+            ax2.set_ylabel('Loss Value')
             ax2.grid(True, alpha=0.3)
 
-        plt.suptitle('算法收敛性分析', fontsize=16, fontweight='bold')
+        plt.suptitle('Algorithm Convergence Analysis', fontsize=16, fontweight='bold')
 
         filename = f"convergence_analysis_{timestamp}"
         filepath = self._save_figure(fig, filename)
@@ -749,10 +749,10 @@ class AdvancedVisualizer(Visualizer):
         usage_values = list(link_usage_data.values())
         ax1.hist(usage_values, bins=20, color=self.colors[0], alpha=0.7, edgecolor='black')
         ax1.axvline(x=np.mean(usage_values), color='red', linestyle='--',
-                    label=f'平均使用次数: {np.mean(usage_values):.1f}')
-        ax1.set_title('链路使用频次分布', fontweight='bold')
-        ax1.set_xlabel('使用次数')
-        ax1.set_ylabel('链路数量')
+                    label=f'Average Usage: {np.mean(usage_values):.1f}')
+        ax1.set_title('Link Usage Frequency Distribution', fontweight='bold')
+        ax1.set_xlabel('Usage Count')
+        ax1.set_ylabel('Number of Links')
         ax1.legend()
 
         # Jain公平性指数计算和显示
@@ -762,7 +762,7 @@ class AdvancedVisualizer(Visualizer):
             jain_index = (sum_usage ** 2) / (len(usage_values) * sum_square_usage) if sum_square_usage > 0 else 0
 
             # 绘制公平性指标
-            metrics = ['Jain公平性指数', '使用方差', '最大最小比']
+            metrics = ['Jain Fairness Index', 'Usage Variance', 'Max/Min Ratio']
             values = [
                 jain_index,
                 np.var(usage_values) / max(usage_values) if max(usage_values) > 0 else 0,
@@ -770,15 +770,15 @@ class AdvancedVisualizer(Visualizer):
             ]
 
             bars = ax2.bar(metrics, values, color=self.colors[:3])
-            ax2.set_title('负载均衡指标', fontweight='bold')
-            ax2.set_ylabel('指标值')
+            ax2.set_title('Load Balancing Metrics', fontweight='bold')
+            ax2.set_ylabel('Metric Value')
 
             for bar, value in zip(bars, values):
                 height = bar.get_height()
                 ax2.text(bar.get_x() + bar.get_width() / 2., height,
                          f'{value:.3f}', ha='center', va='bottom')
 
-        plt.suptitle('网络负载均衡分析', fontsize=16, fontweight='bold')
+        plt.suptitle('Network Load Balancing Analysis', fontsize=16, fontweight='bold')
 
         filename = f"load_balancing_analysis_{timestamp}"
         filepath = self._save_figure(fig, filename)
