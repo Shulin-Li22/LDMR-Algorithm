@@ -1,0 +1,21 @@
+algorithm:
+  config:
+    K: 2
+    Ne_th: 3
+    max_iterations: 15
+    r1: 1
+    r2: 10
+    r3: 50
+network:
+  constellation: globalstar
+  ground_stations: 12
+output:
+  log_level: INFO
+  save_detailed_paths: true
+simulation:
+  description: 重负载场景，大规模网络和高流量
+  name: LDMR Heavy Load Scenario
+traffic:
+  duration: 150.0
+  elephant_ratio: 0.4
+  total_gbps: 8.0
