@@ -175,11 +175,6 @@ python -c "from config import load_scenario; config = load_scenario('performance
 | SPF  | 100.0% | 141.88   | 1.0   | 0.43    |
 | ECMP | 100.0% | 160.00   | 2.0   | 6.49    |
 
-### 参数调优建议
-
-- **r3=50**: 论文验证的最优权重上界
-- **K=2**: 在性能和复杂度间取得最佳平衡
-- **Ne_th=2**: 适合大多数场景的利用频次阈值
 
 ## 🔬 算法实现细节
 
