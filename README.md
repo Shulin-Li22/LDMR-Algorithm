@@ -30,7 +30,7 @@
 
 ```bash
 # 克隆项目
-git clone https://github.com/yourusername/ldmr-simulation.git
+git clone https://github.com/Shulin-Li22/LDMR-Algorithm.git
 cd ldmr-simulation
 
 # 安装依赖
@@ -255,6 +255,7 @@ results/
 
 ### 相关资源
 - [论文PDF](https://ieeexplore.ieee.org/document/10321744)
+- [技术文档](technical_doc.md)
 
 ## 🤝 贡献指南
 
@@ -311,5 +312,5 @@ results/
 
 ---
 
-**最后更新**: 2025年7月20日
-**项目状态**: 稳定版本 v1.2.0
+**最后更新**: 2025年8月7日
+**项目状态**: 稳定版本 v2.1.0
